@@ -1,4 +1,6 @@
 from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import max_error
+from sklearn.metrics import explained_variance_score
 from sklearn.tree import DecisionTreeRegressor
 
 
@@ -11,11 +13,19 @@ def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
     return(mae)
 
 
-def get_mae_A(max_leaf_nodes, train_X, val_X, train_y, val_y):
+def get_me(max_leaf_nodes, train_X, val_X, train_y, val_y):
     model = DecisionTreeRegressor(
         max_leaf_nodes=max_leaf_nodes, random_state=0)
     model.fit(train_X, train_y)
     preds_val = model.predict(val_X)
-    mae = mean_absolute_error(val_y, preds_val)
+    mae = max_error(val_y, preds_val)
     return(mae)
 
+
+def get_evs(max_leaf_nodes, train_X, val_X, train_y, val_y):
+    model = DecisionTreeRegressor(
+        max_leaf_nodes=max_leaf_nodes, random_state=0)
+    model.fit(train_X, train_y)
+    preds_val = model.predict(val_X)
+    mae = explained_variance_score(val_y, preds_val)
+    return(mae)
