@@ -34,3 +34,19 @@ print("Validation MAE: {:,.0f}".format(val_mae))
 # Set up code checking
 binder.bind(globals())
 print("\nSetup complete")
+
+
+def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
+    model = DecisionTreeRegressor(
+        max_leaf_nodes=max_leaf_nodes, random_state=0)
+    model.fit(train_X, train_y)
+    preds_val = model.predict(val_X)
+    mae = mean_absolute_error(val_y, preds_val)
+    return(mae)
+
+
+candidate_max_leaf_nodes = [5, 25, 50, 100, 250, 500]
+
+scores = {leaf_size: get_mae(leaf_size, train_X, val_X, train_y, val_y)
+          for leaf_size in candidate_max_leaf_nodes}
+best_tree_size = min(scores, key=scores.get)
