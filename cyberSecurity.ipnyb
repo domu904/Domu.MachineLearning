@@ -1,0 +1,6 @@
+# Code you have previously used to load data
+import pandas as pd
+from sklearn.tree import DecisionTreeRegressor
+
+# Path of the file to read
+iowa_file_path = '../input/home-data-for-ml-course/train.csv'
