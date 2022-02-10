@@ -7,4 +7,6 @@ To run use VSCode and Anacoda Jupyter. Open up the project by pointing the folde
 
 Currently the data folder contain different types of data
 
-
+- cyber data
+- home data
+- soccer data
